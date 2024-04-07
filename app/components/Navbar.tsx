@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
-// import CartIcon from "./CartIcon";
+import CartIcon from "./CartIcon";
 import MobileNavbar from "./MobileNavbar";
+import OptionalLinks from "./OptionalLinks";
 
 const Navbar = () => {
   const user = true;
@@ -20,19 +21,8 @@ const Navbar = () => {
         <Link href="/menu" className="group text-green-600 transition-all duration-300 ease-in-out">
           <span className="bg-left-bottom bg-gradient-to-r from-green-600 to-green-600 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out pb-2 xl:text-lg">Menu</span>
         </Link>
-        {!user ? (
-          <Link href="/login" className="group text-green-600 transition-all duration-300 ease-in-out">
-            <span className="bg-left-bottom bg-gradient-to-r from-green-600 to-green-600 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out pb-2 xl:text-lg">Login</span>
-        </Link>
-        ) : (
-          <div className="flex gap-12">
-            <Link href="/orders" className="group text-green-600 transition-all duration-300 ease-in-out">
-            <span className="bg-left-bottom bg-gradient-to-r from-green-600 to-green-600 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out pb-2 xl:text-lg">Orders</span>
-            </Link>
-            <span className="cursor-pointer xl:text-lg">Logout</span>
-          </div>
-        )}
-        {/* <CartIcon /> */}
+        <OptionalLinks />
+        <CartIcon />
       </div>
     </div>
   );

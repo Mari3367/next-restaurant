@@ -1,8 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-// import CartIcon from "./CartIcon";
+import CartIcon from "./CartIcon";
+import OptionalLinks from "./OptionalLinks";
 
 const links = [
   { id: 1, title: "Homepage", url: "/" },
@@ -32,7 +32,7 @@ const MobileNavbar = () => {
           ))}
 
           {/* CHECK USER */}
-          {!user ? (
+          {/* {!user ? (
             <Link href="/login" onClick={() => setOpen(false)}>
               Login
             </Link>
@@ -43,9 +43,10 @@ const MobileNavbar = () => {
               </Link>
               <span>Logout</span>
             </div>
-          )}
+          )} */}
+          <OptionalLinks />
           <Link href="/cart" onClick={() => setOpen(false)}>
-            {/* <CartIcon /> */}
+            <CartIcon />
           </Link>
         </div>
       )}
