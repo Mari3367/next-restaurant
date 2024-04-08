@@ -10,7 +10,7 @@ const Footer = () => {
         <h3 className="font-bold">Working hours</h3>
         <span className="text-white">10:00-22:00</span>
       </div>
-      <p>© ALL RIGHTS RESERVED.</p>
+      <p>© ALL RIGHTS RESERVED</p>
     </div>
   );
 };

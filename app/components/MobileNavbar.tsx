@@ -24,7 +24,7 @@ const MobileNavbar = () => {
         }
       </div>
       {open && (
-        <div className="bg-black text-green-600 absolute left-0  w-full h-[calc(100vh-6rem)] flex flex-col gap-8 items-center justify-center z-10">
+        <div className="bg-black text-green-600 absolute left-0 w-full h-[calc(100vh-3rem)] flex flex-col gap-8 items-center justify-center z-50">
           {links.map((item) => (
             <Link href={item.url} key={item.id} onClick={() => setOpen(false)}>
               {item.title}
