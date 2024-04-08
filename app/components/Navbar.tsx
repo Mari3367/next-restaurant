@@ -7,7 +7,7 @@ import OptionalLinks from "./OptionalLinks";
 const Navbar = () => {
   const user = true;
   return (
-    <div className="h-12 text-green-600 p-4 flex items-center justify-between border-b-2 bg-black uppercase md:h-[6rem] lg:px-20 xl:px-40">
+    <div className="h-12 text-green-600 p-4 flex items-center justify-between bg-black uppercase md:h-[6rem] lg:px-20 xl:px-40">
       {/* LOGO */}
       <div className=" md:flex gap-4 flex-1 md:font-bold xl:text-xl">
         <Link href="/">Rasta Pasta</Link>
