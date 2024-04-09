@@ -4,7 +4,7 @@ import Link from 'next/link';
 // later turn in to clinet component to click logout
 
 const OptionalLinks = () => {
-    const user = false;
+    const user = true;
   return (
     <div>
         {!user ? (
@@ -16,7 +16,7 @@ const OptionalLinks = () => {
             <Link href="/orders" className="group text-green-600 transition-all duration-300 ease-in-out">
             <span className="bg-left-bottom bg-gradient-to-r from-green-600 to-green-600 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out pb-2 xl:text-lg">Orders</span>
             </Link>
-            <div className="cursor-pointer xl:text-lg  group text-green-600 transition-all duration-300 ease-in-out">
+            <div className="cursor-pointer xl:text-lg group text-green-600 transition-all duration-300 ease-in-out">
               <span className="bg-left-bottom bg-gradient-to-r from-green-600 to-green-600 bg-[length:0%_2px] bg-no-repeat group-hover:bg-[length:100%_2px] transition-all duration-500 ease-out pb-2 xl:text-lg">Logout</span>
             </div>
           </div>

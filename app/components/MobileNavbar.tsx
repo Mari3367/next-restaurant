@@ -32,18 +32,6 @@ const MobileNavbar = () => {
           ))}
 
           {/* CHECK USER */}
-          {/* {!user ? (
-            <Link href="/login" onClick={() => setOpen(false)}>
-              Login
-            </Link>
-          ) : (
-            <div className="flex flex-col gap-8">
-              <Link href="/orders" onClick={() => setOpen(false)}>
-                Orders
-              </Link>
-              <span>Logout</span>
-            </div>
-          )} */}
           <OptionalLinks />
           <Link href="/cart" onClick={() => setOpen(false)}>
             <CartIcon />
