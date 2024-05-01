@@ -1,8 +1,17 @@
-import { featuredProducts } from "@/app/data";
 import Image from "next/image";
 import React from "react";
+import { ProductType } from "../types/types";
 
-const Featured = () => {
+const getProducts = async () => {
+  const res = await fetch("http://localhost:3000/api/products");
+  if(!res.ok) {
+    throw new Error("Failed");
+  }
+  return res.json();
+}
+
+const Featured = async () => {
+  const featuredProducts:ProductType[] = await getProducts();
   return (
     <div className=" overflow-x-scroll text-green-600 bg-black">
       {/* WRAPPER */}

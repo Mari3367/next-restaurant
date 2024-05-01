@@ -1,9 +1,18 @@
-import { menu } from "@/app/data";
 import Link from "next/link";
 import React from "react";
 import Image from "next/image";
+import { MenuType } from "../types/types";
 
-const MenuPage = () => {
+const getCategories = async () => {
+  const res = await fetch('http://localhost:3000/api/categories', {cache: "no-store"});
+  if(!res.ok) {
+    throw new Error("Failed");
+  }
+  return res.json();
+}
+
+const MenuPage = async () => {
+  const menu:MenuType = await getCategories();
   return (
     <div className="p-4 lg:px-20 lg:pb-12 xl:px-40 md:h-[calc(100vh-6rem)] flex flex-col md:flex-row items-center bg-black gap-8">
       {menu.map((category) => (
