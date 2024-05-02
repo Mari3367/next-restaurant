@@ -4,7 +4,7 @@ import Link from 'next/link';
 // later turn in to clinet component to click logout
 
 const OptionalLinks = () => {
-    const user = true;
+    const user = false;
   return (
     <div>
         {!user ? (

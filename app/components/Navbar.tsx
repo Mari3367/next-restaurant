@@ -5,7 +5,6 @@ import MobileNavbar from "./MobileNavbar";
 import OptionalLinks from "./OptionalLinks";
 
 const Navbar = () => {
-  const user = true;
   return (
     <div className="h-12 text-green-600 p-4 flex items-center justify-between bg-black uppercase md:h-[6rem] lg:px-20 xl:px-40">
       {/* LOGO */}
