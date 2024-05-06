@@ -6,6 +6,8 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/20/solid";
 import {z} from "zod";
 import { useForm, SubmitHandler} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { registerUser } from "@/app/utils/actions/authActions";
+import { toast } from "react-toastify";
 
 
 
@@ -42,7 +44,14 @@ const SignupForm = () => {
   const toggleVisible = () => setVisible((prev) => !prev);
 
   const saveUser: SubmitHandler<InputType> = async (data)=> {
-    console.log(data);
+    const {confirmPassword, ...user} = data;
+    try {
+      const result = await registerUser(user);
+      toast.success("User Registered Successfully.");
+    } catch(err){
+      toast.error("Something Went Wrong!")
+      console.error(err);
+    }
   }
 
 

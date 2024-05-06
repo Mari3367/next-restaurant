@@ -12,8 +12,6 @@ const links = [
 const MobileNavbar = () => {
   const [open, setOpen] = useState(false);
 
-  // TEMPORARY
-  const user = false;
   return (
     <div>
       <div className="flex justify-end">
