@@ -8,6 +8,9 @@ export const authOptions: AuthOptions = {
     pages: {
         signIn: "/auth/signin",
       },
+    session: {
+        strategy: "jwt",
+    },
     providers: [
         CredentialsProvider({
             name: "Credentials",
@@ -35,7 +38,24 @@ export const authOptions: AuthOptions = {
             }
         }),
     ],
-}
+    callbacks: {
+        async jwt({token}) {
+            const userInDb = await prisma.user.findUnique({
+                where: {
+                  email: token.email!,
+                },
+              });
+              token.isAdmin = userInDb?.isAdmin!;
+              return token;
+        },
+        async session({token, session}) {
+            if(token) {
+                session.user.isAdmin = token.isAdmin;
+            }
+            return session;
+        },
+    },
+};
 
 const handler = NextAuth(authOptions);
 

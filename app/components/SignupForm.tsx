@@ -35,7 +35,7 @@ type InputType = z.infer<typeof FormSchema>;
 
 const SignupForm = () => {
 
-  const {register, handleSubmit, reset, formState: { errors }} = useForm<InputType>({
+  const {register, handleSubmit, formState: { errors }} = useForm<InputType>({
     resolver: zodResolver(FormSchema)
   });
 

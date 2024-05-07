@@ -2,7 +2,7 @@ import React from 'react';
 import SignupForm from '@/app/components/SignupForm';
 import Link from 'next/link';
 
-const RegisterPage = () => {
+const SignupPage = () => {
   return (
     <div className="flex justify-center flex-col items-center bg-black text-green-600 h-[calc(100vh-6rem)] md:justify-start md:pt-[5rem]">
     <SignupForm />
@@ -11,4 +11,4 @@ const RegisterPage = () => {
   )
 }
 
-export default RegisterPage
+export default SignupPage
