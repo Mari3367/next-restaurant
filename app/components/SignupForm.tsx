@@ -35,7 +35,7 @@ type InputType = z.infer<typeof FormSchema>;
 
 const SignupForm = () => {
 
-  const {register, handleSubmit, formState: { errors }} = useForm<InputType>({
+  const {register, handleSubmit, formState: { errors }, reset} = useForm<InputType>({
     resolver: zodResolver(FormSchema)
   });
 
@@ -48,6 +48,7 @@ const SignupForm = () => {
     try {
       const result = await registerUser(user);
       toast.success("User Registered Successfully.");
+      reset()
     } catch(err){
       toast.error("Something Went Wrong!")
       console.error(err);

@@ -15,7 +15,7 @@ export const GET = async (req: NextRequest) => {
     } catch (err) {
       console.log(err);
       return new NextResponse(
-        JSON.stringify({ message: "Something went wrong while fetching products" }),
+        JSON.stringify({ message: "Something went wrong!" }),
         { status: 500 }
       );
     }

@@ -1,6 +1,57 @@
+"use client";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import React from "react";
+import { OrderType } from "../types/types";
+import { useSession } from "next-auth/react";
+import { Button, Input } from "@nextui-org/react";
+import { PencilIcon } from "@heroicons/react/20/solid";
+import { toast } from "react-toastify";
 
 const OrdersPage = () => {
+  const {data:session, status} = useSession();
+
+  const { isLoading, error, data } = useQuery({
+    queryKey: ['orders'],
+    queryFn: () =>
+      fetch('http://localhost:3000/api/orders').then((res) =>
+        res.json(),
+      ),
+  });
+
+  const queryClient = useQueryClient();
+
+  const mutation = useMutation({
+    mutationFn: ({id, status} : {id:string, status: string}) => {
+      return fetch(`http://localhost:3000/api/orders/${id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(status),
+      });
+    },
+    onSuccess() {
+      queryClient.invalidateQueries({queryKey:["orders"]});
+    },
+  });
+
+   const handleUpdate = (e: React.FormEvent<HTMLFormElement>, id: string) => {
+    e.preventDefault;
+    const form = e.target as HTMLFormElement;
+    const input = form.elements[0] as HTMLInputElement;
+    const status = input.value;
+
+    mutation.mutate({id, status});
+    toast.success("Order status updated successfully!");
+   }
+
+
+   if (isLoading || status === "loading") return (
+    <div className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] bg-zinc-900 flex justify-center items-center">
+      <p className="text-green-600 text-xl">Loading ...</p>
+      </div>
+   );
+
   return (
     <div className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] bg-zinc-900">
       <table className="w-full border-separate border-spacing-3">
@@ -14,27 +65,27 @@ const OrdersPage = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="text-sm md:text-base bg-yellow-50">
-            <td className="hidden md:block py-6 px-1">1237861238721</td>
-            <td className="py-6 px-1">19.07.2023</td>
-            <td className="py-6 px-1">89.90</td>
-            <td className="hidden md:block py-6 px-1">Big Burger Menu (2), Veggie Pizza (2), Coca Cola 1L (2)</td>
-            <td className="py-6 px-1">On the way (approx. 10min)...</td>
+          {data.map((item: OrderType) => (
+            <tr className={`${item.status !== "delivered" ? "bg-yellow-100" : "bg-green-100"}`} key={item.id}>
+              <td className="hidden md:block py-6 px-1">{item.id}</td>
+              <td className="py-6 px-1">{item.createdAt.toString().slice(0, 10)}</td>
+              <td className="py-6 px-1">{item.price}</td>
+              <td className="hidden md:block py-6 px-1">{item.products[0].title}</td>
+              {session?.user.isAdmin ? (
+                <td>
+                  <form className="flex gap-4" onSubmit={(e) => handleUpdate(e, item.id)}>
+                    <Input placeholder={item.status} className="md:px-4"/>
+                    <Button className="mr-4" type="submit" color="success">
+                      <PencilIcon className="size-6 text-green-50"/>
+                    </Button>
+                  </form>
+                </td>
+              )
+              : (
+                  <td className="py-6 px-1">{item.status}</td>
+                )}
           </tr>
-          <tr className="text-sm md:text-base bg-green-100">
-            <td className="hidden md:block py-6 px-1">1237861238721</td>
-            <td className="py-6 px-1">19.07.2023</td>
-            <td className="py-6 px-1">89.90</td>
-            <td className="hidden md:block py-6 px-1">Big Burger Menu (2), Veggie Pizza (2), Coca Cola 1L (2)</td>
-            <td className="py-6 px-1">Delivered</td>
-          </tr>
-          <tr className="text-sm md:text-base bg-green-100">
-            <td className="hidden md:block py-6 px-1">1237861238721</td>
-            <td className="py-6 px-1">19.07.2023</td>
-            <td className="py-6 px-1">89.90</td>
-            <td className="hidden md:block py-6 px-1">Big Burger Menu (2), Veggie Pizza (2), Coca Cola 1L (2)</td>
-            <td className="py-6 px-1">Delivered</td>
-          </tr>
+          ))}
         </tbody>
       </table>
     </div>
