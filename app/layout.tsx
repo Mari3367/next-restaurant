@@ -26,7 +26,7 @@ export default function RootLayout({
         <Providers>
           <Navbar />
             {children}
-            <ToastContainer />
+            <ToastContainer theme="dark"/>
           <Footer />
         </Providers>
       </body>

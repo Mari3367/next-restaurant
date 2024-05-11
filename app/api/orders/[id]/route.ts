@@ -1,7 +1,7 @@
 import prisma from "@/app/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 
-// Change order's status
+// CHANGE ORDER'S STATUS
 
 export const PUT = async (req:NextRequest, {params}: {params: {id:string}}) => {
     const {id} = params;
