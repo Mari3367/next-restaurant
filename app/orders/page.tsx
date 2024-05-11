@@ -53,7 +53,7 @@ const OrdersPage = () => {
    );
 
   return (
-    <div className="p-4 lg:px-20 xl:px-40 h-[calc(100vh-6rem)] bg-zinc-900">
+    <div className="p-4 lg:px-20 xl:px-40 h-screen lg:h-[calc(100vh-6rem)] bg-zinc-900">
       <table className="w-full border-separate border-spacing-3">
         <thead>
           <tr className="text-left text-white">
@@ -75,8 +75,8 @@ const OrdersPage = () => {
                 <td>
                   <form className="flex gap-4" onSubmit={(e) => handleUpdate(e, item.id)}>
                     <Input placeholder={item.status} className="md:px-4"/>
-                    <Button className="mr-4" type="submit" color="success">
-                      <PencilIcon className="size-6 text-green-50"/>
+                    <Button className="sm:mr-4 p-0 min-w-[2rem]" type="submit" color="success" size="sm" fullWidth={false}>
+                      <PencilIcon className="size-6 text-green-50 m-0"/>
                     </Button>
                   </form>
                 </td>
