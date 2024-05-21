@@ -20,7 +20,6 @@ const getProduct = async (id:string) => {
 const SingleProductPage = async ({params}:{ params:{id:string}} ) => {
 
   const singleProduct:ProductType = await getProduct(params.id);
-
   return (
     <div className="p-4 lg:px-20 xl:px-40 h-screen flex flex-col justify-around text-green-600 bg-zinc-900 md:flex-row md:gap-8 md:items-center">
       {/* IMAGE CONTAINER */}
