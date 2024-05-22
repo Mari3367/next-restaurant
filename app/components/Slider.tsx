@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 
 const data = [
   {
@@ -37,7 +38,7 @@ const Slider = () => {
       <div className="w-full flex-1 relative bg-black bg-opacity-80">
         <div className="flex flex-col justify-center items-center gap-6 absolute z-10 text-white uppercase md:font-bold top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
             <h1 className="md:text-5xl text-center">{data[currentSlide].title}</h1>
-            <button className="bg-green-600 text-white py-4 px-4 sm:px-8 hover:bg-green-500 transition duration-200">Order Now</button>
+            <button className="bg-green-600 hover:bg-green-500 transition-colors text-white py-4 px-8"><Link href="/menu">Order Now</Link></button>
         </div>
             <Image
             src={data[currentSlide].image}

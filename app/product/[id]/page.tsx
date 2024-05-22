@@ -4,7 +4,6 @@ import React from "react";
 import { ProductType } from "@/app/types/types";
 
 
-
 const getProduct = async (id:string) => {
   const res = await fetch(`http://localhost:3000/api/products/${id}`, {
     cache: "no-store",
