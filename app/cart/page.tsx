@@ -13,7 +13,7 @@ const CartPage = () => {
 
 
   return (
-    <div className="h-[calc(100vh-3rem)] md:h-[calc(100vh-6rem)] flex flex-col text-green-600 lg:flex-row bg-zinc-900">
+    <div className="h-[calc(100vh-3rem)] sm:h-[100%] md:h-[calc(100vh-6rem)] flex flex-col text-green-600 lg:flex-row bg-zinc-900">
       {/* PRODUCTS CONTAINER */}
       <div className="p-6 flex flex-col justify-center overflow-y-scroll w-full lg:p-10">
         {/* SINGLE ITEM */}
