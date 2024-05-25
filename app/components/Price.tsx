@@ -19,7 +19,7 @@ const Price = ({ product }: { product: ProductType }) => {
   useEffect(() => {
     if (product.options?.length) {
       setTotal(
-        quantity * (+product.price + product.options[selected].additionalPrice)
+        quantity * (+product.price + Number(product.options[selected].additionalPrice))
       );
     } else {
       setTotal(quantity * product.price)
