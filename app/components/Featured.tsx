@@ -35,7 +35,7 @@ const Featured = async () => {
               <p className="p-4 2xl:p-8">{item.desc}</p>
               <span className="text-xl font-bold text-white">${item.price}</span>
               <button className="bg-green-600 text-white p-2 rounded-md hover:bg-green-400 transition duration-150">
-                <Link href={`/menu`}>Add to Cart</Link>
+                <Link href={`/menu`}>Order Now</Link>
               </button>
             </div>
           </div>

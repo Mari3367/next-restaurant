@@ -1,6 +1,8 @@
 import nodemailer from "nodemailer";
+import { activationTemplate } from "./emailTemplates/activation";
+import Handlebars from "handlebars";
 
-export async function sendMail({
+export const sendMail = async ({
     to,
     subject,
     body,
@@ -8,9 +10,9 @@ export async function sendMail({
     to: string;
     subject: string;
     body: string;
-  }) {
+  }) => {
     const { SMPT_EMAIL, SMTP_USER, SMTP_PASS } = process.env;
-    //
+
     var transport = nodemailer.createTransport({
       host: "sandbox.smtp.mailtrap.io",
       port: 2525,
@@ -40,3 +42,14 @@ export async function sendMail({
       console.log(err);
     }
   }
+
+export const compileActivationTemplate = (name:string, url:string) => {
+    const template = Handlebars.compile(activationTemplate);
+
+    const htmlBody = template({
+        name,
+        url,
+    });
+
+    return htmlBody;
+}
