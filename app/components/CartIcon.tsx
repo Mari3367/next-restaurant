@@ -33,7 +33,6 @@ const CartIcon = () => {
           <div className="xl:text-lg">Cart<span className="bg-yellow-400 ml-[2px] px-[4px] text-sm rounded-full">{totalItems}</span></div>
         </Link>
       )}
-      
     </div>
   );
 };
