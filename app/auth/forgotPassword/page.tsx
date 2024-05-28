@@ -4,6 +4,9 @@ import { z } from "zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Input, Button } from '@nextui-org/react';
+import { forgotPassword } from '@/app/utils/actions/authActions';
+import { toast } from "react-toastify";
+
 
 const FormSchema = z.object({
     email: z.string().email("Please enter a valid email!")
@@ -17,7 +20,14 @@ const ForgotPasswordPage = () => {
     });
 
     const submitRequest:SubmitHandler<InputType> = async (data) => {
-        //forgotpass server action
+        try {
+            const result = await forgotPassword(data.email);
+            if (result) toast.success("Reset password link was sent to your email.");
+            reset();
+          } catch (e) {
+            console.log(e);
+            toast.error("Something went wrong!");
+          }
     }
 
   return (

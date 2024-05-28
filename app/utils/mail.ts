@@ -1,5 +1,6 @@
 import nodemailer from "nodemailer";
 import { activationTemplate } from "./emailTemplates/activation";
+import { resetPasswordTemplate } from "./emailTemplates/resetPassword";
 import Handlebars from "handlebars";
 
 export const sendMail = async ({
@@ -52,4 +53,15 @@ export const compileActivationTemplate = (name:string, url:string) => {
     });
 
     return htmlBody;
+}
+
+export const compileResetPassTemplate = (name:string, url:string) => {
+  const template = Handlebars.compile(resetPasswordTemplate);
+  const htmlBody = template({
+    name,
+    url,
+});
+
+return htmlBody;
+
 }
