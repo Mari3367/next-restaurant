@@ -45,6 +45,7 @@ const Slider = () => {
             alt=""
             fill
             className="object-fill md:object-cover mix-blend-overlay"
+            priority={true}
             />
       </div>
     </div>
