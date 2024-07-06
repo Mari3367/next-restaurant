@@ -2,13 +2,24 @@ import Image from "next/image";
 import React from "react";
 import { ProductType } from "../types/types";
 import Link from "next/link";
+import prisma from "../utils/connect";
+import { NextResponse } from "next/server";
 
 const getProducts = async () => {
-  const res = await fetch("http://localhost:3000/api/products");
-  if(!res.ok) {
-    throw new Error("Failed");
+
+  try {
+    const featuredProducts = await prisma.product.findMany({
+      where: {
+        isFeatured: true,
+      },
+    });
+    const res = new NextResponse(JSON.stringify(featuredProducts), {status: 200});
+    return res.json()
+  } catch(err){
+    console.log(err);
+    return new NextResponse(JSON.stringify({message: "Something went wrong!"}), {status: 500});
   }
-  return res.json();
+
 }
 
 const Featured = async () => {

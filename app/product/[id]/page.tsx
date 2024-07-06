@@ -3,17 +3,23 @@ import Image from "next/image";
 import React from "react";
 import { ProductType } from "@/app/types/types";
 import DeleteBtn from "@/app/components/DeleteBtn";
+import prisma from "@/app/utils/connect";
+import { NextResponse } from "next/server";
 
 
 const getProduct = async (id:string) => {
-  const res = await fetch(`http://localhost:3000/api/products/${id}`, {
-    cache: "no-store",
-  });
-
-  if(!res.ok) {
-    throw new Error("Failed")
+  try {
+    const product = await prisma.product.findUnique({
+      where: {
+        id:id,
+      },
+    });
+    const res = new NextResponse(JSON.stringify(product));
+    return res.json()
+  }catch(err){
+    console.log(err);
+    return new NextResponse(JSON.stringify({message:"Something went wrong"}), {status: 500})
   }
-  return res.json();
 }
 
 

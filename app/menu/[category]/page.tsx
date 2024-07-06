@@ -2,17 +2,23 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { ProductType } from "@/app/types/types";
+import prisma from "@/app/utils/connect";
+import { NextResponse } from "next/server";
 
 const getProducts = async (category:string) => {
-  const res = await fetch(`http://localhost:3000/api/products?cat=${category}`, {
-    cache: "no-store"
-  });
 
-  if(!res.ok) {
-    throw new Error("Failed")
+  try {
+    const products = await prisma.product.findMany({
+      where: {
+        ...(category && {catSlug: category} ),
+      },
+    });
+    const res = new NextResponse(JSON.stringify(products), {status: 200});
+    return res.json()
+  } catch(err){
+    console.log(err);
+    return new NextResponse(JSON.stringify({message: "Something went wrong!"}), {status: 500});
   }
-
-  return res.json();
 }
 
 type Props = {

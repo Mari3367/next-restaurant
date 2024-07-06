@@ -1,25 +1,8 @@
 import prisma from "@/app/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { authOptions } from "@/app/utils/auth";
 
-// GET SINGLE PRODUCT
-
-export const GET = async (req:NextRequest, { params }: { params:{ id:string } }) => {
-    const { id } = params;
-
-    try {
-        const product = await prisma.product.findUnique({
-            where: {
-                id: id,
-            },
-        });
-        return new NextResponse(JSON.stringify(product), {status: 200});
-    } catch (err) {
-        console.log(err);
-        return new NextResponse(JSON.stringify({message: "Something went wrong!"}), {status: 500});
-    }
-}
 
 // DELETE SINGLE PRODUCT
 

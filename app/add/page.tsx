@@ -88,7 +88,7 @@ const AddPage = () => {
 
     try {
       const url = await upload();
-      const res = await fetch("http://localhost:3000/api/products", {
+      const res = await fetch(`/api/products`, {
         method: "POST",
         body: JSON.stringify({
           img: url,
@@ -106,9 +106,9 @@ const AddPage = () => {
   };
 
     return (
-        <div className="flex flex-col justify-center items-center bg-zinc-900 text-green-600 h-full  sm:h-[calc(100vh-6rem)] pb-6 sm:pb-0">
+        <div className="flex flex-col justify-start items-center bg-zinc-900 text-green-600 p-6 h-full ">
             <h1 className="font-bold text-2xl text-white md:pb-10">Add New Product</h1>
-            <form className="grid md:grid-cols-2  gap-4" onSubmit={handleSubmit}>
+            <form className="grid md:grid-cols-2 gap-4" onSubmit={handleSubmit}>
                 <div className="flex flex-col">
                     <label>Title</label>
                     <input type="text" name="title" onChange={handleChange} className="ring-1 ring-green-200 p-2 rounded-lg placeholder:text-green-300 outline-none "/>

@@ -1,7 +1,7 @@
 import prisma from "@/app/utils/connect";
 import { NextRequest, NextResponse } from "next/server";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "@/app/utils/auth";
 
 // FETCH ORDERS
 export const GET = async (req:NextRequest) => {

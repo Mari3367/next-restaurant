@@ -2,13 +2,19 @@ import Link from "next/link";
 import React from "react";
 import Image from "next/image";
 import { MenuType } from "../types/types";
+import prisma from "../utils/connect";
+import { NextResponse } from "next/server";
 
 const getCategories = async () => {
-  const res = await fetch('http://localhost:3000/api/categories', {cache: "no-store"});
-  if(!res.ok) {
-    throw new Error("Failed");
+
+  try {
+    const categories = await prisma.category.findMany();
+    const res = new NextResponse(JSON.stringify(categories), {status: 200});
+    return res.json()
+  }catch(err) {
+    console.log(err);
+    return new NextResponse(JSON.stringify({message:"Something went wrong"}), {status: 500})
   }
-  return res.json();
 }
 
 const MenuPage = async () => {
