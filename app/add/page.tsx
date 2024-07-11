@@ -44,7 +44,7 @@ const AddPage = () => {
         </div>
     }
 
-  if (status === "unauthenticated" || !session?.user.isAdmin) {
+  if (status === "unauthenticated" || !session?.user.name && session?.user.name !== 'admin') {
     router.push("/");
   }
 

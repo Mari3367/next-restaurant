@@ -18,7 +18,7 @@ const CartIcon = () => {
 
   return (
     <div>
-      {session && session.user.isAdmin ? (
+      {session && session.user.name === 'admin' ? (
         <Link href="/add" >
           <div >
             <span className="flex gap-2"><PlusCircleIcon className="w-[30px]"/>Add Product</span>
