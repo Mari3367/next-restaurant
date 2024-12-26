@@ -6,7 +6,6 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "vercel-build": "prisma generate && prisma migrate deploy && next build",
     "lint": "next lint"
   },
   "dependencies": {
@@ -29,6 +28,7 @@
     "react-dom": "^18",
     "react-hook-form": "^7.51.3",
     "react-toastify": "^10.0.5",
+    "sharp": "^0.33.5",
     "zod": "^3.23.6",
     "zustand": "^4.5.2"
   },

@@ -14,6 +14,13 @@ const SigninPage = ({ searchParams }: Props) => {
     <SigninForm callbackUrl={searchParams.callbackUrl}/>
     <Link href="/auth/forgotPassword" className="text-blue-300 text-sm pt-4">Forgot password</Link>
     <span className="pt-2"><Link href="/auth/signup" className="text-blue-500 hover:text-blue-400">Don&apos;t have an account? Create one!</Link></span>
+    <div className="flex flex-col gap-2 pt-[3rem] text-white text-sm">
+        <h1>Demo</h1>
+        <span>Email: admin-demo-test@mail.com</span>
+        <span>Password: admindemopass</span>
+        <span>Email: demo-user-test@mail.com</span>
+        <span>Password: userdemopass</span>
+    </div>
     </div>
   )
 }
